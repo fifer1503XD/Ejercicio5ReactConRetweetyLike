@@ -16,8 +16,6 @@
 .t-main{
   display: flex;
   height: 100vh;
-  
-
 }
 
 .t-col-container{
@@ -47,4 +45,17 @@
 
 .t-sidebar-col{
   width: 35%;
+  overflow-x: hidden;
+  overflow-y: scroll rgba(255, 0, 0, 0);
+}
+
+.t-sidebar-col .sidebar-title{
+  text-align: left;
+  margin-left: 25px;
+}
+
+.lupa{
+    position: absolute;
+    margin-top: 3px;
+    left: 30px;
 }

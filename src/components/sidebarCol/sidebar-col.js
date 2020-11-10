@@ -5,7 +5,9 @@ import SearchSideBar from '../SearchSideBar/searchSideBar';
 const SidebarCol = () => {
     return (
         <div className="t-sidebar-col">
-           <SearchSideBar />
+        
+           <SearchSideBar className="lupa"/>
+           <h2 className="sidebar-title">Qué está pasando</h2>
            <FeedTrends /> 
         </div>
     )
