@@ -32,9 +32,10 @@ class Tweet extends React.Component{
                     
                 </div>
                 <div className="row1"> 
-                    <div className="t-icon col">{<ChatSolid/>}{this.props.comments}</div>
-                    <div className="t-icon col">{<RefreshSolid/>}{this.props.retweets}</div>
-                    <div className="t-icon col">{<HeartSolid/>}{this.props.likes}</div>
+                
+                    <div className={`t-icon col ${this.props.selected && 'selected'}`}>{<ChatSolid/>}{this.props.comments}</div>
+                    <div className={`t-icon col ${this.props.selectedR && 'selected'}`}onClick={() => this.props.selectedRetweet(this.props.index)}><RefreshSolid className={`${this.props.selectedR && 'selected'}`}/>{this.props.retweets}</div>
+                    <div className={`t-icon col ${this.props.selectedL && 'selected'}`}onClick={() => this.props.selectedLike(this.props.index)}>{<HeartSolid/>}{this.props.likes}</div>
                     <p></p>
                 </div>
                 

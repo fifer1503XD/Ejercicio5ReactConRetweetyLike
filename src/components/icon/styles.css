@@ -1,4 +1,5 @@
-.t-icon > svg{
+.t-icon>svg{
+    
     color: rgb(20, 23, 26);
 }
 
@@ -11,3 +12,4 @@
 .t-icon:hover > svg{
     color: rgba(29,161,242,1.00);
 }
+

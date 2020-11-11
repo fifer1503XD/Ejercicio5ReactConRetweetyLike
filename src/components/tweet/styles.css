@@ -49,7 +49,6 @@
     text-align: left;
 }
 .t-icon > svg{
-    color: rgb(20, 23, 26);
     height: 30px;
     transition: 400ms;
 }
@@ -61,4 +60,11 @@
 .t-icon:hover > svg{
     color: rgba(29,161,242,1.00);
     transition: 400ms;
+}
+.selected{
+    font-size: 15px;
+    
+}
+.selected>svg{
+    color: rgba(29,161,242,1.00);
 }
