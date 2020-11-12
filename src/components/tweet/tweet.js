@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.css';
+import ContextMenu from '../context-menu';
 import{
+MenuAlt1Outline,
 HomeSolid,
 ChatSolid,
 RefreshSolid,
@@ -8,30 +10,41 @@ HeartSolid
 
 } from "@graywolfai/react-heroicons";
 
+
 class Tweet extends React.Component{
     constructor(){
         super();
     }
     render(){
         return (
-            <div className="tweet-container">
-                <div className="row">
+            <div className="tweet-container borderBottom">
+                <div className="row1">
                     <div className="c1">
                         <img src={this.props.profileImg} alt="profile" />
                     </div>
                     <div className="c2">
                         <h6>{this.props.profile}</h6>
                         <h6>{this.props.username}</h6>
+                        
+                    </div>
+                    <div className="contextual-container">
+                    <div className=" menu"onClick={() => this.props.contextFn.toggleContextMenuFn(this.props.index)}> {<MenuAlt1Outline/>}
+                    </div>
+                    
+                    {
+                        
+                    this.props.showMenu ? (<ContextMenu removeFn={this.props.contextFn.removeTweetFn} index={this.props.index} />) :  null
+                    }
                     </div>
                     <div className="c3"></div>
                 </div>
                 <div className="row">
-                    <p className="content">                
+                    <div className="content">                
                         {this.props.content}
-                      <h5>{this.props.date}</h5>  </p>
+                      <div className="fecha">{this.props.date}</div>  </div>
                     
                 </div>
-                <div className="row1"> 
+                <div className="row1 marginBottom"> 
                 
                     <div className={`t-icon col ${this.props.selected && 'selected'}`}>{<ChatSolid/>}{this.props.comments}</div>
                     <div className={`t-icon col ${this.props.selectedR && 'selected'}`}onClick={() => this.props.selectedRetweet(this.props.index)}><RefreshSolid className={`${this.props.selectedR && 'selected'}`}/>{this.props.retweets}</div>
@@ -41,8 +54,9 @@ class Tweet extends React.Component{
                 
         
                  
-
+                <hr></hr>
             </div>
+            
         )
     }
 }

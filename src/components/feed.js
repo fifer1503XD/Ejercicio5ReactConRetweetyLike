@@ -10,10 +10,9 @@ class Feed extends React.Component {
             
         }
     }
+   
     selectedRetweet = (index) => {
-        //Clonar la lista de objetos
         let tweets2 = JSON.parse(JSON.stringify(this.state.tweets));
-        //Actualizamos el valor de la propiedad selected
         if(tweets2[index].myRetweet===true) {
             tweets2[index].interaction.retweets=tweets2[index].interaction.retweets -1;
             tweets2[index].myRetweet=false;
@@ -25,13 +24,20 @@ class Feed extends React.Component {
             tweets2[index].selectedRetweet=true;
 
         }
-       
-         
-         
-         
 
         //Actualizamos el estado
         this.setState({tweets: tweets2});
+    }
+    removeTweet = (index) => {
+        let tweetsClone = JSON.parse(JSON.stringify(this.state.tweets));
+        tweetsClone.splice(index, 1);
+        this.setState({tweets: tweetsClone});
+        
+    }
+    toggleContextMenu = (index) => {
+        let tweetsClone = JSON.parse(JSON.stringify(this.state.tweets));
+        tweetsClone[index].showMenu = !tweetsClone[index].showMenu;
+        this.setState({tweets: tweetsClone});
     }
     selectedLike = (index) => {
         //Clonar la lista de objetos
@@ -51,17 +57,21 @@ class Feed extends React.Component {
           //Actualizamos el estado
         this.setState({tweets: tweets2});
     }
-
+    
 
     render() {
 
-
+        const contextFn = {
+            toggleContextMenuFn: this.toggleContextMenu,
+            removeTweetFn: this.removeTweet,
+        }
         return (
             <div>
                 {
-                    this.state.tweets.map( tweet => {
+                    this.state.tweets.map(( tweet,index) => {
                         return (
                             <Tweet
+                            key={tweet.id}
                                 profileImg={tweet.profileImg}
                                 profile={tweet.profile}
                                 username={tweet.username}
@@ -72,9 +82,12 @@ class Feed extends React.Component {
                                 likes={tweet.interaction.likes}
                                 selectedLike={this.selectedLike}
                                 selectedRetweet={this.selectedRetweet}
-                                index={tweet.id}
+                                index={index}
                                 selectedL={tweet.selectedLike}
                                 selectedR={tweet.selectedRetweet}
+                                showMenu={tweet.showMenu}
+                                contextFn={contextFn}
+
                                 />
                         )
                     })
