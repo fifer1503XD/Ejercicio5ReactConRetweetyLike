@@ -8,12 +8,16 @@ const PostTweet = (props) => {
                 <div className="t-profile-img">
                     <img src={props.profileUrl}  alt="profile" />
                 </div>
-                <form>
-                    <input placeholder="¿Qué está pasando?" />
+                <div>
+                    <input placeholder="¿Qué está pasando compa?" 
+                    onChange={props.writeInInput}
+                    value={props.newMessage}/>
                     <div className="t-post-options">
-                        <button>Twittear</button>
+                        <button
+                        onClick={props.sendMessage}
+                        >Twittear</button>
                     </div>
-                </form>
+                </div>
                 
             </div>
         </div>

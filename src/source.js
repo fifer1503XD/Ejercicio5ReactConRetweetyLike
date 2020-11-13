@@ -1,4 +1,22 @@
-const feed = [
+const feed = [{
+    id:13,
+            profileImg:"https://www.redwolf.in/image/catalog/stickers/marvel-avengers-logo-sticker.jpg",
+            profile: "initSquad",
+            username: "@initSquad",
+            content: "fi",
+            date: "hoy",
+            interaction: {
+                comments: 0,
+                retweets: 0,
+                likes: 0
+            },
+            verified: true,
+            blocked: true,
+            myLike: false,
+            myRetweet:false,
+            selectedlike:false,
+            selectedRetweet:false,
+            showMenu:false},
     {   id:0,
         profileImg:"https://pbs.twimg.com/profile_images/1199022496521080832/tBx9LPh8_400x400.png",
         profile: "AJ + Español",
