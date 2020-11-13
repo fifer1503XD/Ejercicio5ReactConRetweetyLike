@@ -1,7 +1,7 @@
 .t-post-tweet > img{
     width: 10%;
     max-width: 100%;
-    display: block;
+    display: flex;
     border-radius: 50%;
 }
 
@@ -9,8 +9,11 @@
     margin-left: 1em;
     border: none;
     font-size: 1.3em;
-    width: 100%;
-    display: block;
+    width: 70%;
+    
+}
+.containerPostTweet{
+    display:flex;
 }
 
 .t-post-tweet input:focus{
@@ -23,9 +26,9 @@
 }
 
 .t-post-options{
-    width: 100%;
+    width: 30%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: left;
 }
 
 .t-post-options > button{

@@ -1,18 +1,17 @@
 import React from "react";
 import Tweet from "./tweet/tweet";
 import {feed} from '../source';
+import PostTweet from "./postTweet/post-tweet";
 class Feed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             tweets: feed,
-            newMessage: this.props.newMessage
+            newMessage: "",
             
         }
     }
-   
     selectedRetweet = (index) => {
-        this.render()
         let tweets2 = JSON.parse(JSON.stringify(this.state.tweets));
         if(tweets2[index].myRetweet===true) {
             tweets2[index].interaction.retweets=tweets2[index].interaction.retweets -1;
@@ -23,11 +22,9 @@ class Feed extends React.Component {
             tweets2[index].interaction.retweets=tweets2[index].interaction.retweets + 1;
             tweets2[index].myRetweet=true;
             tweets2[index].selectedRetweet=true;
-
         }
-
-        //Actualizamos el estado
         this.setState({tweets: tweets2});
+        console.log(this.state.tweet)
     }
     removeTweet = (index) => {
         let tweetsClone = JSON.parse(JSON.stringify(this.state.tweets));
@@ -59,7 +56,38 @@ class Feed extends React.Component {
         this.setState({tweets: tweets2});
     }
     
-
+    writeInInput = (evento) => {
+        console.log(this.state.tweet)
+        const message = evento.target.value;
+        this.setState({ newMessage: message });
+        console.log(this.state.newMessage)
+        
+      };
+      sendMessage = () => {
+        let tweets2 = JSON.parse(JSON.stringify(this.state.tweets));
+        let newTweet = {
+            id:"",
+            profileImg:"https://www.redwolf.in/image/catalog/stickers/marvel-avengers-logo-sticker.jpg",
+            profile: "initSquad",
+            username: "@initSquad",
+            content: this.state.newMessage,
+            date: ""+new Date(),
+            interaction: {
+                comments: 0,
+                retweets: 0,
+                likes: 0
+            },
+            verified: true,
+            blocked: true,
+            myLike: false,
+            myRetweet:false,
+            selectedlike:false,
+            selectedRetweet:false,
+            showMenu:false}
+            tweets2.unshift(newTweet)
+            this.setState({tweets:tweets2, newMessage:""})
+        
+        }
     render() {
         console.log(this.state.newMessage)
         const contextFn = {
@@ -67,10 +95,18 @@ class Feed extends React.Component {
             removeTweetFn: this.removeTweet,
         }
         return (
+    
+         
             <div>
+                   <PostTweet profileUrl={this.props.profileUrl}
+            newMessage={this.state.newMessage}
+            writeInInput={this.writeInInput}
+            sendMessage={this.sendMessage}
+          />,
                 { 
                     this.state.tweets.map(( tweet,index) => {
                         return (
+                           
                             <Tweet
                             key={tweet.id}
                                 profileImg={tweet.profileImg}
