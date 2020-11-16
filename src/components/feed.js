@@ -108,7 +108,7 @@ class Feed extends React.Component {
                         return (
                            
                             <Tweet
-                            key={tweet.id}
+                                key={tweet.id}
                                 profileImg={tweet.profileImg}
                                 profile={tweet.profile}
                                 username={tweet.username}
